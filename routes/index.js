@@ -12,10 +12,16 @@ const readTags = (res, deviceId) => {
 			});
 		} else {
 			console.log(twin.tags);
-			let lu = twin.tags.subscriptionTraffic.lastLu;
-			delete lu['status'];
-			delete lu['gprsStatus'];
-			let gprs = twin.tags.subscriptionTraffic.gprs;
+			var lu = [];
+			var gprs = [];
+			if (twin.tags.subscriptionTraffic.hasOwnProperty('lastLu')) {
+				lu = twin.tags.subscriptionTraffic.lastLu;
+				delete lu['status'];
+				delete lu['gprsStatus'];
+			}
+			if (twin.tags.subscriptionTraffic.hasOwnProperty('gprs')) {
+				gprs = twin.tags.subscriptionTraffic.gprs;
+			}
 			delete twin.tags.subscriptionTraffic['lastLu'];
 			delete twin.tags.subscriptionTraffic['gprs'];
 
