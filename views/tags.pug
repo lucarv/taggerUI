@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    .panel.panel-default
+      .panel-heading Update Device Tags
+      .panel-body 
+        form(action='/tags' method='POST')
+          fieldset
+            .form-group.row
+              .col-xs-6
+                input.form-control(type='text', name='deviceId', placeholder='Device Id') 
+              .col-xs-2
+                button.btn.btn-primary(type='submit') Submit     
+    .panel.panel-default
+      .panel-heading Fetch IoT Hub Device Tags
+      .panel-body 
+        form(action='/twin', method='GET')
+          fieldset
+            .form-group.row
+              .col-xs-6
+                input.form-control(type='text', name='deviceId', placeholder='Device Id') 
+              .col-xs-2
+                button.btn.btn-primary(type='submit') Submit  
+            .form-group-row
+              .col-xs-12
+                p #{tags}
+            .form-group-row
+              .col-xs-12
+                h4 This Feature is not available for IoT Central devices                 
+    .panel.panel-default
+        .panel-heading Status Bar
+        .panel-body 
+            block content
+                pre #{status}
